@@ -180,11 +180,11 @@ Separately, Stock A also receives unstructured headlines. We parsed these with a
 
 ### Put-Call Parity
 
-[Put-call parity](https://www.investopedia.com/terms/p/putcallparity.asp) states that for European options sharing the same strike and expiry: `C − P = S − Ke^(−rT)`. When quoted calls and puts violate this relationship — after accounting for transaction costs — the mispriced leg can be traded against the fairly-priced one for a risk-free profit.
+[Put-call parity](https://www.investopedia.com/terms/p/putcallparity.asp) states that for European options sharing the same strike and expiry: `C − P = S − Ke^(−rT)`. When quoted calls and puts violate this relationship — after accounting for transaction costs — the mispriced leg can be traded against the fairly-priced one for a risk-free profit. This is especially useful when other teams quote outdated spreads. 
 
 We built and tested a dedicated put-call parity bot on Stock B's option chain. In practice, any mispricings that appeared were smaller than the bid-ask spread on the options, making them impossible to capture without crossing the spread and giving back the entire edge. The options market was structured such that spreads absorbed any theoretical arbitrage — a pattern common in real-world options markets on less liquid underlyings.
 
-There was also a risk management reason to avoid options entirely. In later rounds, some teams began buying out entire sides of order books and posting extreme prices on the other side, effectively trapping any resting limit orders into catastrophic fills. Any strategy that required passively posting option quotes would have been directly exposed to this behavior. Since we had no profitable edge in options to justify that tail risk, we cut them entirely from our final bot.
+There was also a risk management reason to avoid options entirely. In later rounds, some teams began buying out entire sides of order books and posting extreme prices on the other side, effectively trapping any new market orders into catastrophic fills. Any strategy that required passively posting option quotes would have been directly exposed to this behavior. Since we had no profitable edge in options to justify that tail risk, we cut them entirely from our final bot.
 
 ### Box Spread
 
