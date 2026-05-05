@@ -200,7 +200,7 @@ Despite the algorithm handling the bulk of our trading, we also engaged in discr
 
 In rounds 1 through 5, this strategy contributed additional profit on top of the algorithm's output. However, the prediction market's volatility made the strategy fundamentally risky: moves were sharp and news-driven, meaning that being wrong about the direction or the exit timing could result in large, rapid losses.
 
-Round 6 was the turning point. A sequence of adverse prediction market moves resulted in a loss of approximately $200,000 in manual trades, flipping that round from a top-5 finish to a 35th place result and a final round PnL of −$68,000. We immediately recognized that the tail risk of manual prediction market trading was not justified by its average contribution. For rounds 7 through 12, we ran the algorithm exclusively.
+Round 6 was the turning point. A sequence of adverse prediction market moves, caused by the exchange freezing while we had taken large positions, resulted in a loss of approximately $200,000 in manual trades, flipping that round from a top-5 finish to a 35th place result and a final round PnL of −$68,000. We immediately recognized that the tail risk of manual prediction market trading, in the presence of the exchange lag, was not justified by its average contribution. For rounds 7 through 12, we ran the algorithm exclusively.
 
 ### Risk Management and Position Architecture
 
