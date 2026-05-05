@@ -141,7 +141,7 @@ Directional trading on A and C was our primary alpha source, responsible for the
 
 The core idea: compute a fair value from a pricing model, compare it against the live mid-price, and take a position when the gap exceeds a threshold. What makes this work in a competitive setting is speed and model accuracy. If your fair value updates on an earnings release faster than the bots and other teams reprice their quotes, you can take the position before the market closes the gap.
 
-We capped directional positions at 150 shares per symbol (out of the 200-share absolute limit), with the remaining 40 reserved for arb. Since arb positions clear in milliseconds, the combined peak exposure at any instant was at most 190 shares — within the hard limit with a 10-share buffer for unexpected timing edge cases.
+We capped directional positions at 150 shares per symbol (out of the 200-share absolute limit), with another 40 reserved for arb. Since arb positions clear in milliseconds, the combined peak exposure at any instant was at most 190 shares — within the hard limit with a 10-share buffer for unexpected timing edge cases.
 
 Position sizing was proportional to both the signal's confidence and the magnitude of the edge. A larger edge relative to the expected maximum implied more conviction and a larger target. We also tracked the recent price range per symbol to dynamically adjust entry and exit thresholds: in low-volatility, range-bound conditions we required less edge to enter; in trending, high-volatility regimes we required more, avoiding overtrading on noise.
 
