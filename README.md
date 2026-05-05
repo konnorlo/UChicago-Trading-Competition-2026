@@ -2,7 +2,7 @@
 This writeup shares our algorithm design and insights that brought us to 1st place out of 41 teams in Case 1 of the 2026 UChicago Trading Competition, winning the $1,500 top prize. :)
 <table>
 </table>
-<img src="https://github.com/konnorlo/UChicago-Trading-Competition-2026/blob/bb08ee768430a095afd8d8aafcbbae804662298d/group-photo!!.jpg">
+<img src="https://github.com/konnorlo/UChicago-Trading-Competition-2026/blob/858352d575b19679043f7971d36d1d5ff64e7a22/group-photo!!.jpg">
 
 <table style="width: 100%; table-layout: fixed; border-collapse: collapse;" border="1">
   <colgroup>
@@ -22,7 +22,7 @@ This writeup shares our algorithm design and insights that brought us to 1st pla
       <td align="center" valign="top" width="250px">
         <a href="https://www.linkedin.com/in/konnor-lo">
           <br />
-          <p><b>Konnor Lo</b></br></p></a><span>Prediction Markets</span>
+          <p><b>Konnor Lo</b></br></p></a><span>Prediction Markets/Manual</span>
       </td>
       <td align="center" valign="top" width="250px">
         <a href="https://www.linkedin.com/in/justinzwang21/">
@@ -86,7 +86,7 @@ A key feature of Case 1 is the tight coupling between assets, which implies that
 
 From a strategy composition perspective, the environment is effectively a hybrid control problem with competing objectives. Market making provides spread capture under inventory constraints and stochastic fills, which can be modeled through queue dynamics and adverse selection risk. Arbitrage strategies such as ETF dislocations and put-call parity violations introduce near risk-free trades, but their frequency is state-dependent and declines as markets become more efficient. Directional signals derived from earnings or macro news introduce alpha but increase variance and tail risk. Optimal performance arises from dynamically allocating capital and risk budget across these components, subject to position limits and execution frictions. This requires integrating signal processing, execution logic, and risk management into a unified framework that adapts to changing liquidity, volatility, and information flow regimes.
 
-For full documentation on the algorithmic trading environment and more competition context, please refer to the [Case Packet](case-packet.pdf).
+For full documentation on the algorithmic trading environment and more competition context, please refer to the [Case Packet](https://github.com/konnorlo/UChicago-Trading-Competition-2026/blob/858352d575b19679043f7971d36d1d5ff64e7a22/case-packet.pdf).
 
 <br>
 
@@ -220,7 +220,7 @@ Across 12 rounds, the algorithm placed consistently in the top 5. Rounds 1 throu
 
 The competition's scoring formula weighted later rounds more heavily and moderated the impact of single-round outliers in both directions. This design benefited a team running a consistent, risk-controlled algorithm over one relying on high-variance strategies. 
 
-![Final Leaderboard](leaderboard.PNG)
+![Final Leaderboard](https://github.com/konnorlo/UChicago-Trading-Competition-2026/blob/858352d575b19679043f7971d36d1d5ff64e7a22/leaderboard.PNG)
 
 <br>
 
@@ -231,6 +231,8 @@ In earlier rounds, we were generating significant profit from both ETF arbitrage
 One of our biggest mistakes was our attempt to manually trade on the prediction markets. It was immediately clear in Round 1 that the exchange would freeze sporadically, so, while the algorithm could run without issues, we were unable to flatten if the exchange froze while we had outstanding positions. This hurt us significantly in Round 6, when a freeze combined with news events led to the prediction markets prices shifting drastically while we had maximum positions, resulting in an almost-instant drop of 200k PnL. Given that the news events were relatively unpredictable in the first place, it was also possible for something similar to have occurred even without the exchange freezing, so the idea to trade manually carried much more risk than it was worth. In hindsight, given that the leaderboard methodology prioritized consistently high placement, it would have been better to not have click traded at all. 
 
 In the final rounds of the competition, some teams adopted an adversarial strategy: buying out one side of a product's order book and posting extreme prices on the other side, effectively trapping any resting market orders into catastrophic fills. Our primary defense was structural: we did not post resting limit orders in products we were uncertain about. By the time sniping became common in later rounds, we had already stopped prediction market trading and we did not trade the options (which had the least liquidity and hence seemed the most prone to sniping). Our remaining exposure was in A, C, and the ETF — where positions were directional and short-lived, not passive limit orders sitting in a vulnerable book. For the final round, we made a deliberate choice to stop the bot entirely after approximately 8 minutes. By that point, we had calculated that finishing in the top 11 out of 41 teams in that round was sufficient to secure overall first place, given our lead over the second-place team. With teams actively manipulating order books in the final minutes, continuing to trade carried significant downside with limited additional upside.
+
+![Another Team Picture](https://github.com/konnorlo/UChicago-Trading-Competition-2026/blob/858352d575b19679043f7971d36d1d5ff64e7a22/team_pic_2.jpg)
 
 ## FAQ
 
